@@ -40,7 +40,9 @@ public abstract class BaseViewModel {
      *
      * @param mAppComponent the m app component
      */
-    protected abstract void initDagger(BaseAppComponent mAppComponent);
+    protected void initDagger(BaseAppComponent mAppComponent) {
+
+    }
 
     private void setBus(Bus bus) {
         this.bus = bus;

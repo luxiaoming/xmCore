@@ -24,7 +24,7 @@ public class BaseModel {
 
     private Bus bus;
 
-    CompositeSubscription compositeSubscription = new CompositeSubscription();
+    private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     public BaseModel() {
 

@@ -70,8 +70,10 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
     }
 
-    protected <C> C getActivityComponent(Class<C> componentType) {
-        return xmUtils.getComponent(componentType, getActivity());
+
+    @SuppressWarnings("unchecked")
+    protected <C> C getAppComponent(Class<C> componentType) {
+        return xmUtils.getComponent(componentType, mAppComponent);
     }
 
     @Override
