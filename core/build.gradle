@@ -1,0 +1,91 @@
+apply plugin: 'com.android.library'
+apply plugin: 'android-apt'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    //设置JDK1.8
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // 使用dataBinding
+    dataBinding.enabled = true
+
+    greendao{
+       // daoPackage：设置DaoMaster 、DaoSession、Dao包名
+       // targetGenDir：设置DaoMaster 、DaoSession、Dao目录
+       // targetGenDirTest：设置生成单元测试目录
+       // generateTests：设置自动生成单元测试用例
+        schemaVersion 1
+        targetGenDir 'src/main/java'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets{
+        main(){
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.1.1'
+    //Dagger 解耦
+    provided 'javax.annotation:javax.annotation-api:1.2'
+    compile 'com.google.dagger:dagger:2.5'
+    apt 'com.google.dagger:dagger-compiler:2.5'
+
+    //bus
+    compile 'com.squareup:otto:1.3.8'
+
+    // gson 解析库
+    compile 'com.google.code.gson:gson:2.4'
+
+    //toast
+    compile 'com.github.johnpersano:supertoasts:2.0'
+
+    // 检测UI卡顿
+    compile 'com.github.moduth:blockcanary-ui:1.1.4'
+    // 内存泄露检测
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
+    // or 1.4-beta1
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+
+    // retrofit 网络请求库
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
+    compile 'com.squareup.okhttp:okhttp:2.7.0'
+
+    // ReactiveX 经典的线程操作
+    compile 'io.reactivex:rxjava:1.0.16'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+
+    //数据库
+    compile 'org.greenrobot:greendao:3.1.0'
+
+}
+
+apply from: '../bintray.gradle'
