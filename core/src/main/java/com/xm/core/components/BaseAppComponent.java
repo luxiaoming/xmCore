@@ -19,9 +19,8 @@ package com.xm.core.components;
 import android.content.Context;
 
 import com.squareup.otto.Bus;
-import com.xm.core.ViewModel.BaseViewModel;
-import com.xm.core.activity.BaseActivity;
 import com.xm.core.utils.rx.xmPref;
+import com.xm.core.viewmodel.BaseViewModel;
 
 public interface BaseAppComponent {
     Context getContext();
